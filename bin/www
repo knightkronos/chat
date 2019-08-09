@@ -28,6 +28,15 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+var io = require('socket.io')(server);
+
+io.on('connection',function (socket) {
+  socket.emit('sayHello', {info:'Hello'});
+  socket.on('sendinfo',function (data) {
+    console.log(data);
+  });
+
+});
 
 /**
  * Normalize a port into a number, string, or false.
