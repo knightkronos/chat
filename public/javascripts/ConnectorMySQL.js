@@ -20,6 +20,27 @@ function ConnectorMySQL (config)
     this.tables = {};
 }
 
+ConnectorMySQL.prototype.addDefaultModelTables = function ()
+{
+    this.tables ={
+        Users: this.sequelize.define('users',{
+            idUser: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                primaryKey: true
+            },
+            username: Sequelize.STRING,
+            email: Sequelize.STRING,
+            password: Sequelize.STRING,
+            birthdate: Sequelize.DATE,
+            firstname: Sequelize.STRING,
+            lastname: Sequelize.STRING,
+            typeUser: Sequelize.STRING,
+            isDisabled: Sequelize.INTEGER
+
+        })
+    }
+};
 
 /*
 ConnectorMySQL.prototype.addDefaultModelTables = function ()
