@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/app.js"></script>
+    <script src="/socket.io/socket.io.js"></script
+    <link rel="stylesheet" href="stylesheets/style.css">
     <script>
         var socket = io('http://localhost:3000');
         socket.on('sayHello', function (data) {
@@ -12,7 +12,6 @@
             socket.emit('sendinfo', { my: 'data' });
         });
     </script>
-    <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body>
     <h1>Leo inicie desde aqui :V</h1>
