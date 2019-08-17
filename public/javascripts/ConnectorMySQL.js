@@ -23,7 +23,7 @@ function ConnectorMySQL (config)
 ConnectorMySQL.prototype.addDefaultModelTables = function ()
 {
     this.tables ={
-        Users: this.sequelize.define('users',{
+        Users: this.sequelize.define('Users',{
             idUser: {
                 type: Sequelize.STRING,
                 allowNull: false,

@@ -4,10 +4,10 @@
     <list default="true" id="5771d235-8beb-405b-b0b0-f25e836c6326" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/javascripts/ConnectorMySQL.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/ConnectorMySQL.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascripts/GlobalConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascripts/GlobalConfig.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/chat.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/chat.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1566003873604</updated>
       <workItem from="1566003877140" duration="1005000" />
-      <workItem from="1566008111825" duration="6759000" />
+      <workItem from="1566008111825" duration="9678000" />
     </task>
     <servers />
   </component>

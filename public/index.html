@@ -16,5 +16,27 @@
 <body>
     <h1>Leo inicie desde aqui :V</h1>
     <h2>Aqui será la pagina de login :V</h2>
+    <br>
+    <form action="/createuser" method="post">
+        <fieldset>
+            <legend>Create a new User</legend>
+            <input type="text" name="username">
+            <input type="password" name="pass">
+            <input type="email" name="email">
+            <input type="text" name="firstname">
+            <input type="text" name="lastname">
+            <input type="date" name="birthdate">
+            <button>Ok</button>
+        </fieldset>
+        <br>
+    </form>
+    <form action="/login" method="post">
+        <fieldset>
+            <legend>Login</legend>
+            <input type="text" name="username_login">
+            <input type="password" name="pass_login">
+            <button>Ok</button>
+        </fieldset>
+    </form>
 </body>
 </html>
