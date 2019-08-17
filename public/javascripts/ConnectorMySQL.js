@@ -133,7 +133,7 @@ ConnectorMySQL.prototype.testConnection = function()
         .authenticate()
         .then(() => {
             console.log('Connection has been established successfully.');
-        })
+        }).then(()=>{this.sequelize.close();})
         .catch(err => {
             console.error('Unable to connect to the database:', err);
         });
@@ -141,8 +141,9 @@ ConnectorMySQL.prototype.testConnection = function()
 
 ConnectorMySQL.prototype.disconnect = function ()
 {
-    this.sequelize.close();
-    this.sequelize = null;
+    return new Promise(((resolve, reject) => {
+        this.sequelize.close();
+    }));
 };
 
 ConnectorMySQL.prototype.addSpecificModelTables = function (modeltables){this.tables = modeltables};

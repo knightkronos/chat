@@ -1,11 +1,14 @@
 var createError = require('http-errors');
 var express = require('express');
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
+var globals = require('./public/javascripts/GlobalConfig');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var chatRouter = require('./routes/chat');
 
 var app = express();
 
@@ -18,9 +21,32 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  key: 'session_cookie_spacez',
+  secret: globals.secretcode,
+  store:new MySQLStore({
+    host:'152.231.199.159',
+    port:3306,
+    clearExpired: true,
+    checkExpirationInterval: 10000,
+    expiration: 60000,
+    user:'chat-user',
+    password:'chatfcoleo',
+    database:'chat-db',
+    schema: {
+      tableName: 'sessions',
+      columnNames: {
+        session_id: 'session_id',
+        expires: 'expires',
+        data: 'data'
+      }
+    }}),
+  resave: false,
+  saveUninitialized: false
+}));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/chat', chatRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
