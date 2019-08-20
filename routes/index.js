@@ -7,6 +7,8 @@ const path = require('path');
 const Sequalize = require('sequelize');
 const moment = require('moment');
 moment().format();
+const UIDGenerator = require('uid-generator');
+
 var router = express.Router();
 
 /* GET home page. */
@@ -47,7 +49,8 @@ router.post('/createuser', async function (req,res,next)
       firstname:req.body.firstname,
       lastname:req.body.lastname,
       typeUser:'normal',
-      isDisabled:0
+      isDisabled:0,
+      tokenID:new UIDGenerator().generateSync()
     }).then((newuser)=>{
       c.disconnect();
       req.session.iduser = newuser.idUser;

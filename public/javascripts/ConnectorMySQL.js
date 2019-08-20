@@ -36,8 +36,8 @@ ConnectorMySQL.prototype.addDefaultModelTables = function ()
             firstname: Sequelize.STRING,
             lastname: Sequelize.STRING,
             typeUser: Sequelize.STRING,
-            isDisabled: Sequelize.INTEGER
-
+            isDisabled: Sequelize.INTEGER,
+            tokenID:Sequelize.STRING
         }),
         Rooms:this.sequelize.define('Rooms',{
             idRoom: {
@@ -46,7 +46,8 @@ ConnectorMySQL.prototype.addDefaultModelTables = function ()
                 primaryKey: true
             },
             dateofcreation:Sequelize.DATE,
-            isGroup:Sequelize.STRING
+            isGroup:Sequelize.STRING,
+            tokenID:Sequelize.STRING
         }),
         Rooms_of_Users:this.sequelize.define('Rooms_of_Users',{
             idRooms_of_Users: {
@@ -159,9 +160,7 @@ ConnectorMySQL.prototype.testConnection = function()
 
 ConnectorMySQL.prototype.disconnect = function ()
 {
-    return new Promise(((resolve, reject) => {
-        this.sequelize.close();
-    }));
+    this.sequelize.close();
 };
 
 ConnectorMySQL.prototype.addSpecificModelTables = function (modeltables){this.tables = modeltables};

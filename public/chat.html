@@ -13,6 +13,30 @@
     </script>
 </head>
 <body>
-
+    <br>
+    <form action="/chat/addFriend" method="post">
+        <fieldset>
+            <legend>Add Friend to Chat</legend>
+            <input type="text" name="friend_id">
+            <button>Ok</button>
+        </fieldset>
+        <br>
+    </form>
+    <form action="/createGroup" method="post">
+        <fieldset>
+            <legend>Create a new Group</legend>
+            <input type="text" name="namegroup">
+            <button>Ok</button>
+        </fieldset>
+        <br>
+    </form>
+    <form action="/addGroup" method="post">
+        <fieldset>
+            <legend>Join up to a new group</legend>
+            <input type="text" name="invitation_id">
+            <button>Ok</button>
+        </fieldset>
+        <br>
+    </form>
 </body>
 </html>
