@@ -5,6 +5,8 @@ const uuid = require('uuid/v1');
 const crypto = require('crypto');
 const path = require('path');
 const Sequalize = require('sequelize');
+const moment = require('moment');
+moment().format();
 var router = express.Router();
 
 /* GET home page. */
@@ -33,13 +35,15 @@ router.post('/createuser', async function (req,res,next)
     res.redirect('/');
   else
   {
-    let d1 = new Date();
+    console.log(req.body.birthdate);
+    var birthdate = moment(req.body.birthdate,'YYYY-MM-DD');
+    console.log(birthdate.format());
     await c.createRecord('Users',{
       idUser: uuid(),
       username:req.body.username,
       email:req.body.email,
       password:crypto.createHmac('sha256',req.body.pass).digest('hex'),
-      birthdate:d1.getTime(),
+      birthdate:birthdate.format('YYYY/MM/DD'),
       firstname:req.body.firstname,
       lastname:req.body.lastname,
       typeUser:'normal',

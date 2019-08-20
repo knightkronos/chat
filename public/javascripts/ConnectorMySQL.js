@@ -38,6 +38,24 @@ ConnectorMySQL.prototype.addDefaultModelTables = function ()
             typeUser: Sequelize.STRING,
             isDisabled: Sequelize.INTEGER
 
+        }),
+        Rooms:this.sequelize.define('Rooms',{
+            idRoom: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                primaryKey: true
+            },
+            dateofcreation:Sequelize.DATE,
+            isGroup:Sequelize.STRING
+        }),
+        Rooms_of_Users:this.sequelize.define('Rooms_of_Users',{
+            idRooms_of_Users: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                primaryKey: true
+            },
+            idRoom:Sequelize.STRING,
+            idUser:Sequelize.STRING
         })
     }
 };
