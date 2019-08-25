@@ -47,6 +47,7 @@ ConnectorMySQL.prototype.addDefaultModelTables = function ()
             },
             dateofcreation:Sequelize.DATE,
             isGroup:Sequelize.STRING,
+            roomName:Sequelize.STRING,
             tokenID:Sequelize.STRING
         }),
         Rooms_of_Users:this.sequelize.define('Rooms_of_Users',{

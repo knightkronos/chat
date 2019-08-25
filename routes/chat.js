@@ -29,7 +29,8 @@ router.get('/', function(req, res, next) {
   res.sendFile(path.resolve('./public/chat.html'));
 });
 
-router.post('/addFriend',async function (req,res,next) {
+router.post('/addFriend',async function (req,res,next)
+{
   let c = new ConnerctorMySQL(globalSettings.mysqlconfig);
   c.addDefaultModelTables();
   let User = await c.findAll('Users',{tokenID:req.body.friend_id});
@@ -41,6 +42,7 @@ router.post('/addFriend',async function (req,res,next) {
         idRoom:uuid(),
         dateofcreation:new Date().getTime(),
         isGroup:'N',
+        roomName:User[0].fisrtname,
         tokenID:new UIDGenerator().generateSync()
       });
       let user_1 = {
