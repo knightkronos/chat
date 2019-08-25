@@ -4,3 +4,10 @@ exports.OnConnectChat = function (socket) {
         console.log(data);
     });
 };
+
+exports.OnConnectRoom = function (socket) {
+    socket.emit('sayHello', {info:'Room'});
+    socket.on('sendinfo',function (data) {
+        console.log(data);
+    });
+};

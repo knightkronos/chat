@@ -30,6 +30,7 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 var io = require('socket.io')(server);
+io.of('/chat/room_*').on('connect',sockets.OnConnectRoom);
 io.of('/chat').on('connect',sockets.OnConnectChat);
 app.set('socketio', io);
 /**

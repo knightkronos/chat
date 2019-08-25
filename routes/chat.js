@@ -1,5 +1,6 @@
 const express = require('express');
 const server = require('../bin/www');
+const app = require('../app');
 const ConnerctorMySQL = require('../public/javascripts/ConnectorMySQL');
 const globalSettings = require('../public/javascripts/GlobalConfig');
 const uuid = require('uuid/v1');
@@ -11,7 +12,7 @@ moment().format();
 const ConnectorMYSQL = require('../public/javascripts/ConnectorMySQL');
 const path = require('path');
 
-const io = {};
+const io = app.get('socketio');
 
 router.use(function (req,res,next){
   if(req.session.iduser)
@@ -79,11 +80,22 @@ router.post('/createGroup',async function (req,res,next)
     roomName:req.body.namegroup,
     tokenID:new UIDGenerator().generateSync()
   });
+  let user = {
+    idRooms_of_Users: uuid(),
+    idRoom:newRoom.idRoom,
+    idUser:req.session.iduser
+  };
+  await c.createRecord('Rooms_of_Users',user).then(() =>{c.disconnect();});
   res.send(newRoom.tokenID);
 });
 
-router.post('/addGroup',function (req,res,next) {
+router.post('/addGroup',function (req,res,next)
+{
 
+});
+
+router.get('/room_*',function (req,res,next) {
+  res.sendFile(path.resolve('./public/room.html'));
 });
 
 router.get('/logout',async function(req,res,next)
