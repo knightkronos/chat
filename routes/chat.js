@@ -1,6 +1,5 @@
 const express = require('express');
 const server = require('../bin/www');
-const app = require('../app');
 const ConnerctorMySQL = require('../public/javascripts/ConnectorMySQL');
 const globalSettings = require('../public/javascripts/GlobalConfig');
 const uuid = require('uuid/v1');
@@ -12,8 +11,6 @@ moment().format();
 const ConnectorMYSQL = require('../public/javascripts/ConnectorMySQL');
 const path = require('path');
 
-const io = app.get('socketio');
-
 router.use(function (req,res,next){
   if(req.session.iduser)
   {
@@ -22,8 +19,6 @@ router.use(function (req,res,next){
   else
     res.redirect('/');
 });
-
-
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

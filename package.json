@@ -21,6 +21,7 @@
     "pug": "2.0.0-beta11",
     "socket.io": "^2.2.0",
     "moment": "^2.24.0",
-    "uid-generator": "^2.0.0"
+    "uid-generator": "^2.0.0",
+    "express-socket.io-session": "^1.3.5"
   }
 }

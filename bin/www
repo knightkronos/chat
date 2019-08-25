@@ -4,16 +4,17 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var sockets = require('../public/javascripts/Sockets');
-var debug = require('debug')('chat:server');
-var http = require('http');
+const app = require('../app');
+const sockets = require('../public/javascripts/Sockets');
+const debug = require('debug')('chat:server');
+const http = require('http');
+const sharedsession = require("express-socket.io-session");
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
@@ -29,10 +30,12 @@ const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-var io = require('socket.io')(server);
+const io = require('socket.io')(server);
+const session = app.get('session');
+io.use(sharedsession(session));
 io.of('/chat/room_*').on('connect',sockets.OnConnectRoom);
 io.of('/chat').on('connect',sockets.OnConnectChat);
-app.set('socketio', io);
+app.use((req, res, next)=>{ res.locals.io = io; next(); });
 /**
  * Normalize a port into a number, string, or false.
  */

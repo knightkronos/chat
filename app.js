@@ -1,16 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var session = require('express-session');
-var MySQLStore = require('express-mysql-session')(session);
-var globals = require('./public/javascripts/GlobalConfig');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+const globals = require('./public/javascripts/GlobalConfig');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var chatRouter = require('./routes/chat');
+const indexRouter = require('./routes/index');
+const chatRouter = require('./routes/chat');
 
-var app = express();
+const app = express();
 
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
@@ -21,15 +21,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  key: 'session_cookie_spacez',
+const sess = session({
+  key: 'session_cookie_chat',
   secret: globals.secretcode,
   store:new MySQLStore({
     host:'152.231.199.159',
     port:3306,
     clearExpired: true,
     checkExpirationInterval: 10000,
-    expiration: 60000,
+    expiration: 10000,
     user:'chat-user',
     password:'chatfcoleo',
     database:'chat-db',
@@ -43,8 +43,10 @@ app.use(session({
     }}),
   resave: false,
   saveUninitialized: false
-}));
+});
 
+app.use(sess);
+app.set('session',sess);
 app.use('/', indexRouter);
 app.use('/chat', chatRouter);
 
