@@ -7,9 +7,9 @@
     <script>
         var socket = io('http://localhost:3000/chat/room_*');
         socket.on('sayHello', function (data) {
-            console.log(data);
-            socket.emit('sendinfo', { my: 'data' });
+            socket.emit('sendinfo', data);
         });
+        socket.to('BTRDnmRSifcrZYt9C2gESe').emit('sayHello', "let's play a game");
     </script>
 </head>
 <body>
