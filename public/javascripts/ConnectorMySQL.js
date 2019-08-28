@@ -47,6 +47,7 @@ ConnectorMySQL.prototype.addDefaultModelTables = function ()
             },
             dateofcreation:Sequelize.DATE,
             isGroup:Sequelize.STRING,
+            roomName:Sequelize.STRING,
             tokenID:Sequelize.STRING
         }),
         Rooms_of_Users:this.sequelize.define('Rooms_of_Users',{
@@ -186,14 +187,27 @@ ConnectorMySQL.prototype.runQuery = function(queryString, replacements,type)
     let s = this.sequelize;
     return new Promise((resolve,rejected) =>
     {
-        s.query(queryString,{
-            replacements:replacements,
-            type:type
-        }).then(result =>{
-            resolve(result);
-        }).catch(err => {
-            rejected(err);
-        })
+        if(type === null)
+        {
+            s.query(queryString,{
+                replacements:replacements,
+            }).then(result =>{
+                resolve(result);
+            }).catch(err => {
+                rejected(err);
+            })
+        }
+        else{
+            s.query(queryString,{
+                replacements:replacements,
+                type:type
+            }).then(result =>{
+                resolve(result);
+            }).catch(err => {
+                rejected(err);
+            })
+        }
+
     })
 };
 
@@ -201,7 +215,7 @@ ConnectorMySQL.prototype.findById = function (tablename,id)
 {
   return new Promise((resolve,rejected)=>
   {
-      this.tables[tablename].findById(id).then(record => {resolve(record)}).catch(err =>{rejected(err)});
+      this.tables[tablename].findByPk(id).then(record => {resolve(record)}).catch(err =>{rejected(err)});
   })
 };
 
