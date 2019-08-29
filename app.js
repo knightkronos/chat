@@ -52,17 +52,17 @@ const sess = session({
   saveUninitialized: false
 });
 
-app.use(sess);
-app.use('/', indexRouter);
-app.use('/chat', chatRouter);
-
-var io = require('socket.io')(server);
+const io = require('socket.io')(server);
 io.use(function(socket, next) {
   sess(socket.request, socket.request.res, next);
 });
 io.of('/chat/room_*').on('connect',sockets.OnConnectRoom);
 io.of('/chat').on('connect',sockets.OnConnectChat);
 app.set('socketio',io);
+
+app.use(sess);
+app.use('/', indexRouter);
+app.use('/chat', chatRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

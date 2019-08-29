@@ -89,15 +89,6 @@ router.post('/addGroup',function (req,res,next)
 
 });
 
-router.get('/room_*',function (req,res,next) {
-  res.sendFile(path.resolve('./public/room.html'));
-});
-
-router.get('/room_*/emit',function (req,res,next) {
-  var io  = app.get('socketio');
-  io.to(req.session.idRoom).emit('sayHello');
-});
-
 router.get('/logout',async function(req,res,next)
 {
   await req.session.destroy(function(err)
